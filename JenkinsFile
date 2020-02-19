@@ -26,7 +26,6 @@ stage('Create the required imagestreams') {
         }
       }
     }
- }
 
 stage('Create BuildConfig Objects') {
       openshift.withCluster() {
