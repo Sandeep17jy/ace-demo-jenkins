@@ -1,4 +1,32 @@
- stage('Build ace-only layer') {
+stage('Create BuildConfig Objects') {
+      openshift.withCluster() {
+        openshift.withProject("${OCP_NAMESPACE}") {
+ 
+          def templateSelector = openshift.selector( "template", "ace-buildconfig-template")
+          def templateExists = templateSelector.exists()
+          def template
+          if (!templateExists) {
+            template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/ace-bc.yaml?token=AKUWWRMTUN5RSR53BCU6E2C6JV2IE').object()
+          } else {
+            templateSelector.delete();
+            template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/ace-bc.yaml?token=AKUWWRMTUN5RSR53BCU6E2C6JV2IE').object()
+          }
+
+          def bcModels = openshift.process('ace-buildconfig-template')
+          for(bc in bcModels) 
+          {
+            echo "the bc is: " + bc.metadata["name"]
+            def bcExists = openshift.selector( "bc", bc.metadata["name"] ).exists()
+            if(!bcExists)
+            {
+              openshift.create(bc)
+            }
+          } 
+        }
+      }
+    }
+
+stage('Build ace-only layer') {
    openshift.withCluster() {
      openshift.withProject("${OCP_NAMESPACE}") {
        openshift.selector("bc", "ace-only-build").startBuild("--wait=true")
