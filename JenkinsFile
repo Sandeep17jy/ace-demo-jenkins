@@ -55,7 +55,8 @@ stage('Create BuildConfig Objects') {
       }
     }
 
-stage('Build ace-only-prebuild layer') {
+if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("prebuild")) {   
+ stage('Build ace-only-prebuild layer') {
    openshift.withCluster() {
      openshift.withProject("${OCP_NAMESPACE}") {
        openshift.selector("bc", "ace-only-prebuild").startBuild("--wait=true")
@@ -70,8 +71,10 @@ stage('Build ace-only-prebuild layer') {
      }
    }
  }
+}
 
-stage('Build ace-only layer') {
+if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("build")) {
+  stage('Build ace-only layer') {
    openshift.withCluster() {
      openshift.withProject("${OCP_NAMESPACE}") {
        openshift.selector("bc", "ace-only-build").startBuild("--wait=true")
@@ -86,3 +89,4 @@ stage('Build ace-only layer') {
      }
    }
  }
+}
