@@ -1,4 +1,5 @@
-stage('Create the required imagestreams') {
+if (params.REQUESTED_ACTION.equals("full")) {
+   stage('Create the required imagestreams') {
       openshift.withCluster() {
         openshift.withProject("${OCP_NAMESPACE}") {
             
@@ -11,7 +12,7 @@ stage('Create the required imagestreams') {
             templateSelector.delete();
             template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/image-stream-template.json').object()
           }
-
+   
           def isModels = openshift.process('ace-imagestreams-template')
           for(imageStream in isModels) 
           {
@@ -26,6 +27,7 @@ stage('Create the required imagestreams') {
         }
       }
     }
+ }
 
 stage('Create BuildConfig Objects') {
       openshift.withCluster() {
@@ -86,3 +88,5 @@ stage('Build ace-only layer') {
      }
    }
  }
+}
+
