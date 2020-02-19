@@ -22,7 +22,6 @@ objects:
         to:
           kind: "ImageStreamTag"
           name: "ace-only-prebuild:latest"
-
   - kind: BuildConfig
     apiVersion: build.openshift.io/v1
     metadata:
