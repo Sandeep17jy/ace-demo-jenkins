@@ -63,7 +63,7 @@ stage('Build ace-only-prebuild layer') {
    }
  }
   
- stage('Tag ace-only Image') {
+ stage('Tag ace-only-prebuild Image') {
     openshift.withCluster() {
      openshift.withProject("${OCP_NAMESPACE}") {
        openshift.tag("ace-only-prebuild:latest", "ace-only-prebuild:${BUILD_NUMBER}")
