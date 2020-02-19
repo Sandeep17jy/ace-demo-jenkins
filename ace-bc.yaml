@@ -41,23 +41,4 @@ objects:
         to:
           kind: "ImageStreamTag"
           name: "ace-only:latest"
-          
- - kind: BuildConfig
-    apiVersion: build.openshift.io/v1
-    metadata:
-      name: ace-only-prod
-    spec:
-      source:
-        git:
-          uri: https://github.com/ox-prolifics/ace-docker.git
-      strategy:
-        dockerStrategy:
-          dockerfilePath: ubi/Dockerfile.prod
-          from:
-            kind: ImageStreamTag
-            name: ibm-ace-prod:latest
-      output: 
-        to:
-          kind: "ImageStreamTag"
-          name: "ace-only-prod:latest"
 parameters:
