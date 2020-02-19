@@ -1,5 +1,4 @@
-if (params.REQUESTED_ACTION.equals("full")) {
-   stage('Create the required imagestreams') {
+stage('Create the required imagestreams') {
       openshift.withCluster() {
         openshift.withProject("${OCP_NAMESPACE}") {
             
@@ -88,5 +87,3 @@ stage('Build ace-only layer') {
      }
    }
  }
-}
-
