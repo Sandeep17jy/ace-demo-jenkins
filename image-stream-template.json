@@ -25,6 +25,18 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
+        "name": "ace-only-prebuild",
+        "creationTimestamp": null
+      },
+      "spec": {},
+      "status": {
+        "dockerImageRepository": ""
+      }
+    },
+    {
+      "kind": "ImageStream",
+      "apiVersion": "v1",
+      "metadata": {
         "name": "ace-only",
         "creationTimestamp": null
       },
