@@ -1,3 +1,32 @@
+stage('Create the required imagestreams') {
+      openshift.withCluster() {
+        openshift.withProject("${OCP_NAMESPACE}") {
+            
+          def templateSelector = openshift.selector( "template", "ace-imagestreams-template")
+          def templateExists = templateSelector.exists()
+          def template
+          if (!templateExists) {
+            template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/image-stream-template.json').object()
+          } else {
+            templateSelector.delete();
+            template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/image-stream-template.json').object()
+          }
+
+          def isModels = openshift.process('ace-imagestreams-template')
+          for(imageStream in isModels) 
+          {
+            echo "the imagestream is: " + imageStream.metadata["name"]
+            def imageStreamExists = openshift.selector( "is", imageStream.metadata["name"] ).exists()
+            if(!imageStreamExists)
+            {
+              openshift.create(imageStream)
+            }
+          } 
+            
+        }
+      }
+    }
+
 stage('Create BuildConfig Objects') {
       openshift.withCluster() {
         openshift.withProject("${OCP_NAMESPACE}") {
