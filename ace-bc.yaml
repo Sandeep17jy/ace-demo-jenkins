@@ -1,0 +1,25 @@
+---
+kind: Template
+apiVersion: v1
+metadata:
+  name: ace-buildconfig-template
+objects:
+  - kind: BuildConfig
+    apiVersion: build.openshift.io/v1
+    metadata:
+      name: ace-only-build
+    spec:
+      source:
+        git:
+          uri: https://github.com/ox-prolifics/ace-docker.git
+      strategy:
+        dockerStrategy:
+          dockerfilePath: ubi/Dockerfile.aceonly
+          from:
+            kind: ImageStreamTag
+            name: golang:latest
+      output: 
+        to:
+          kind: "ImageStreamTag"
+          name: "ace-only:latest"
+parameters:
