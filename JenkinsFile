@@ -1,0 +1,15 @@
+ stage('Build ace-only layer') {
+   openshift.withCluster() {
+     openshift.withProject("${OCP_NAMESPACE}") {
+       openshift.selector("bc", "ace-only-build").startBuild("--wait=true")
+     }
+   }
+ }
+  
+ stage('Tag ace-only Image') {
+    openshift.withCluster() {
+     openshift.withProject("${OCP_NAMESPACE}") {
+       openshift.tag("ace-only:latest", "ace-only:${BUILD_NUMBER}")
+     }
+   }
+ }
