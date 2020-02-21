@@ -40,4 +40,22 @@ objects:
         to:
           kind: "ImageStreamTag"
           name: "ace-only:latest"
+  - kind: BuildConfig
+    apiVersion: build.openshift.io/v1
+    metadata:
+      name: ace-mqclient-build
+    spec:
+      source:
+        git:
+          uri: https://github.com/ox-prolifics/ace-docker.git
+      strategy:
+        dockerStrategy:
+          dockerfilePath: ubi/Dockerfile.mqclient
+          from:
+            kind: ImageStreamTag
+            name: ace-only:latest
+      output: 
+        to:
+          kind: "ImageStreamTag"
+          name: "ace-mqclient:latest"
 parameters:
