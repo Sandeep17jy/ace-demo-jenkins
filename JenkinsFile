@@ -73,7 +73,7 @@ if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("p
  }
 }
 
-if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("build")) {
+if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("build-ace-only")) {
   stage('Build ace-only layer') {
    openshift.withCluster() {
      openshift.withProject("${OCP_NAMESPACE}") {
@@ -86,6 +86,24 @@ if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("b
     openshift.withCluster() {
      openshift.withProject("${OCP_NAMESPACE}") {
        openshift.tag("ace-only:latest", "ace-only:${BUILD_NUMBER}")
+     }
+   }
+ }
+}
+
+if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("build-ace-mqclient")) {
+  stage('Build ace-mqclient layer') {
+   openshift.withCluster() {
+     openshift.withProject("${OCP_NAMESPACE}") {
+       openshift.selector("bc", "ace-only").startBuild("--wait=true")
+     }
+   }
+ }
+  
+ stage('Tag ace-mqclient Image') {
+    openshift.withCluster() {
+     openshift.withProject("${OCP_NAMESPACE}") {
+       openshift.tag("ace-:latest", "ace-only:${BUILD_NUMBER}")
      }
    }
  }
