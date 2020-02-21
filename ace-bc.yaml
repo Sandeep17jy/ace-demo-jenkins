@@ -17,7 +17,7 @@ objects:
           dockerfilePath: ubi/Dockerfile.prebuild
           from:
             kind: ImageStreamTag
-            name: go-toolset:latest
+            name: ubi-minimal:latest
       output: 
         to:
           kind: "ImageStreamTag"
