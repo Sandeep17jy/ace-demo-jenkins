@@ -77,7 +77,7 @@ if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("b
   stage('Build ace-only layer') {
    openshift.withCluster() {
      openshift.withProject("${OCP_NAMESPACE}") {
-       openshift.selector("bc", "ace-only-build").startBuild("--wait=true")
+       openshift.selector("bc", "ace-only").startBuild("--wait=true")
      }
    }
  }
