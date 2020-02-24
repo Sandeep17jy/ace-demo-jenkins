@@ -108,3 +108,21 @@ if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("b
    }
  }
 }
+
+if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("build-ace-bar")) {
+  stage('Build ace-bar layer') {
+   openshift.withCluster() {
+     openshift.withProject("${OCP_NAMESPACE}") {
+       openshift.selector("bc", "ace-bar-build").startBuild("--wait=true")
+     }
+   }
+ }
+  
+ stage('Tag ace-mqclient Image') {
+    openshift.withCluster() {
+     openshift.withProject("${OCP_NAMESPACE}") {
+       openshift.tag("ace-bar:latest", "ace-bar:${BUILD_NUMBER}")
+     }
+   }
+ }
+}
