@@ -54,7 +54,7 @@ objects:
           from:
             kind: ImageStreamTag
             name: ace-only:latest
-      output: 
+      output:
         to:
           kind: "ImageStreamTag"
           name: "ace-mqclient:latest"
