@@ -73,7 +73,7 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "ace-bar",
+        "name": "ace-service",
         "creationTimestamp": null
       },
       "spec": {},
