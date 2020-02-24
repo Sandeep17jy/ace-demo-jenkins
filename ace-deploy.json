@@ -62,7 +62,7 @@
       "kind": "DeploymentConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "ace-service-dc",
+        "name": "ace-service",
         "creationTimestamp": null
       },
       "spec": {
