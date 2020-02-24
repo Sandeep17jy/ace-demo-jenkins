@@ -136,11 +136,11 @@ if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("d
           def templateExists = templateSelector.exists()
           def template
           if (!templateExists) {
-              template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/ace-deploy.json').object()
+            template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/ace-deploy.json').object()
           } else {
-              template = templateSelector.object()
+            templateSelector.delete();
+            template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/ace-deploy.json').object()
           }
-
           def tradeServiceDCExists = openshift.selector( 'deploymentconfig/ace-service' ).exists()
 
           if(!tradeServiceDCExists)
