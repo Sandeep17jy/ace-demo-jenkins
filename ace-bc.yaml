@@ -75,5 +75,5 @@ objects:
       output:
         to:
           kind: "ImageStreamTag"
-          name: "ace-bar:latest"
+          name: "ace-service:latest"
 parameters:
