@@ -13,6 +13,18 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
+        "name": "ubi-minimal",
+        "creationTimestamp": null
+      },
+      "spec": {},
+      "status": {
+        "dockerImageRepository": ""
+      }
+    },
+    {
+      "kind": "ImageStream",
+      "apiVersion": "v1",
+      "metadata": {
         "name": "golang",
         "creationTimestamp": null
       },
@@ -61,7 +73,7 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "ubi-minimal",
+        "name": "ace-bar",
         "creationTimestamp": null
       },
       "spec": {},
