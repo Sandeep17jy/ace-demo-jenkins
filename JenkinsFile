@@ -127,7 +127,7 @@ if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("b
  }
 }
 
-if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("build-ace-deploy")) {
+if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("deploy-ace-bar")) {
   stage('Create Service and Deployment Config') {
       openshift.withCluster() {
         openshift.withProject("${OCP_NAMESPACE}") {
