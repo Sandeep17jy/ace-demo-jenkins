@@ -126,3 +126,29 @@ if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("b
    }
  }
 }
+
+if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("build-ace-deploy")) {
+  stage('Create Service and Deployment Config') {
+      openshift.withCluster() {
+        openshift.withProject("${OCP_NAMESPACE}") {
+          
+          def templateSelector = openshift.selector( "template", "ace-service-template")
+          def templateExists = templateSelector.exists()
+          def template
+          if (!templateExists) {
+              template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/ace-deploy.json').object()
+          } else {
+              template = templateSelector.object()
+          }
+
+          def tradeServiceDCExists = openshift.selector( 'deploymentconfig/ace-service' ).exists()
+
+          if(!tradeServiceDCExists)
+          {
+            def app = openshift.newApp('ace-service')
+          }
+          
+        }
+      }
+    }
+}
