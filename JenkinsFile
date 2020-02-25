@@ -35,10 +35,10 @@ stage('Create BuildConfig Objects') {
           def templateExists = templateSelector.exists()
           def template
           if (!templateExists) {
-            template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/ace-bc.yaml').object()
+            template = openshift.create('https://raw.githubusercontent.com/deanpeterson/ace-demo-jenkins/master/ace-bc.yaml').object()
           } else {
             templateSelector.delete();
-            template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/ace-bc.yaml').object()
+            template = openshift.create('https://raw.githubusercontent.com/deanpeterson/ace-demo-jenkins/master/ace-bc.yaml').object()
           }
 
           def bcModels = openshift.process('ace-buildconfig-template')
