@@ -2,7 +2,7 @@
   "kind": "Template",
   "apiVersion": "v1",
   "metadata": {
-    "name": "ace-deploy-template",
+    "name": "ace-service-template",
     "creationTimestamp": null,
     "annotations": {
       "description": "This creates a template for the ace-deploy"
