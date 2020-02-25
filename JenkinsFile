@@ -121,7 +121,7 @@ if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("b
  stage('Tag ace-mqclient Image') {
     openshift.withCluster() {
      openshift.withProject("${OCP_NAMESPACE}") {
-       openshift.tag("ace-bar:latest", "ace-bar:${BUILD_NUMBER}")
+       openshift.tag("ace-service:latest", "ace-service:${BUILD_NUMBER}")
      }
    }
  }
