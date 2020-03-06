@@ -11,7 +11,7 @@ objects:
     spec:
       source:
         git:
-          uri: https://github.com/deanpeterson/ace-docker.git
+          uri: https://github.com/Sandeep17jy/ace-docker.git
       strategy:
         dockerStrategy:
           dockerfilePath: ubi/Dockerfile.prebuild
@@ -29,7 +29,7 @@ objects:
     spec:
       source:
         git:
-          uri: https://github.com/deanpeterson/ace-docker.git
+          uri: https://github.com/Sandeep17jy/ace-docker.git
       strategy:
         dockerStrategy:
           dockerfilePath: ubi/Dockerfile.aceonly
@@ -47,7 +47,7 @@ objects:
     spec:
       source:
         git:
-          uri: https://github.com/deanpeterson/ace-docker.git
+          uri: https://github.com/Sandeep17jy/ace-docker.git
       strategy:
         dockerStrategy:
           dockerfilePath: ubi/Dockerfile.mqclient
@@ -65,7 +65,7 @@ objects:
     spec:
       source:
         git:
-          uri: https://github.com/deanpeterson/ace-docker.git
+          uri: https://github.com/Sandeep17jy/ace-docker.git
       strategy:
         dockerStrategy:
           dockerfilePath: ubi/Dockerfile.ace-bar
