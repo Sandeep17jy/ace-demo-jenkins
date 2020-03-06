@@ -6,10 +6,10 @@ stage('Create the required imagestreams') {
           def templateExists = templateSelector.exists()
           def template
           if (!templateExists) {
-            template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/image-stream-template.json').object()
+            template = openshift.create('https://raw.githubusercontent.com/Sandeep17jy/ace-demo-jenkins/master/image-stream-template.json').object()
           } else {
             templateSelector.delete();
-            template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/image-stream-template.json').object()
+            template = openshift.create('https://raw.githubusercontent.com/Sandeep17jy/ace-demo-jenkins/master/image-stream-template.json').object()
           }
    
           def isModels = openshift.process('ace-imagestreams-template')
@@ -35,10 +35,10 @@ stage('Create BuildConfig Objects') {
           def templateExists = templateSelector.exists()
           def template
           if (!templateExists) {
-            template = openshift.create('https://raw.githubusercontent.com/deanpeterson/ace-demo-jenkins/master/ace-bc.yaml').object()
+            template = openshift.create('https://raw.githubusercontent.com/Sandeep17jy/ace-demo-jenkins/master/ace-bc.yaml').object()
           } else {
             templateSelector.delete();
-            template = openshift.create('https://raw.githubusercontent.com/deanpeterson/ace-demo-jenkins/master/ace-bc.yaml').object()
+            template = openshift.create('https://raw.githubusercontent.com/Sandeep17jy/ace-demo-jenkins/master/ace-bc.yaml').object()
           }
 
           def bcModels = openshift.process('ace-buildconfig-template')
@@ -136,10 +136,10 @@ if (params.REQUESTED_ACTION.equals("full")  || params.REQUESTED_ACTION.equals("d
           def templateExists = templateSelector.exists()
           def template
           if (!templateExists) {
-            template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/ace-deploy.json').object()
+            template = openshift.create('https://raw.githubusercontent.com/Sandeep17jy/ace-demo-jenkins/master/ace-deploy.json').object()
           } else {
             templateSelector.delete();
-            template = openshift.create('https://raw.githubusercontent.com/ox-prolifics/ace-demo-jenkins/master/ace-deploy.json').object()
+            template = openshift.create('https://raw.githubusercontent.com/Sandeep17jy/ace-demo-jenkins/master/ace-deploy.json').object()
           }
           def tradeServiceDCExists = openshift.selector( 'deploymentconfig/ace-service' ).exists()
 
